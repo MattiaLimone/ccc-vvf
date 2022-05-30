@@ -16,16 +16,18 @@ use CodeIgniter\Controller;
 
 class Add extends Controller
 {
-    protected $breadcrumb;
     protected $gradi;
     protected $province;
     protected $search;
+
+    protected $breadcrumb;
 
     public function __construct(){
         $this->breadcrumb = new Breadcrumb();
         $this->breadcrumb->add('Home', '/admin/dashboard');
         $this->breadcrumb->add('Aggiungi Personale', '/admin/dashboard/add');
-        $page = new PagesUtils( '/admin/dashboard/add','Aggiungi Personale');
+
+        $page = new PagesUtils('/admin/dashboard/add','Aggiungi Personale');
 
         $this->breadcrumb = $this->breadcrumb->render();
 

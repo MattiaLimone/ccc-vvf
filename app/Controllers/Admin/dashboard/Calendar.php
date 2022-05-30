@@ -29,7 +29,7 @@ class Calendar extends Controller
         $this->breadcrumb->add('Calendario', '/admin/dashboard/calendar');
         $page = new PagesUtils('/admin/dashboard/calendar', 'Calendario');
         $this->breadcrumb = $this->breadcrumb->render();
-
+        $this->sediList = Utils::getSediList();
 
         $results = $page->getAll();
         $counter = 0;
@@ -48,6 +48,7 @@ class Calendar extends Controller
                 'breadcrumbs' => $this->breadcrumb,
                 'searchList' => json_encode($this->search),
                 'usersList' => json_encode($this->usersList),
+                'sediList' => $this->sediList,
                 'turnazione' => json_encode($this->getTurni()),
             ];
             return view("admin/pages/calendar", $data);
@@ -73,41 +74,67 @@ class Calendar extends Controller
             else
                 $turnazione['orario'] = '20:00 - 08:00';
 
-            $userList = $userSlave
+
+            $userSlave
                 ->select()
                 ->where('codice_turnazione !=',  $turno)
                 ->like('codice_turnazione',$codice_turno)
-                ->get()
-                ->getResultArray();
+                ->join('sede','personale_operativo.id = sede.user', 'LEFT');
 
-            $ferie = $ferieSlave
-                ->select(' personale_operativo.nome, personale_operativo.cognome, reg_ferie.user, reg_ferie.from, reg_ferie.to')
+            $userList = $userSlave->get()->getResultArray();
+
+
+            $ferieSlave
+                ->select('personale_operativo.nome, personale_operativo.cognome, reg_ferie.user, reg_ferie.from, reg_ferie.to, 
+                sede.sede_destinazione')
                 ->where('from <=', date('Y-m-d H:m:s',strtotime($day)))
                 ->where('to >=', date('Y-m-d H:m:s',strtotime($day)))
                 ->join('personale_operativo','personale_operativo.id = reg_ferie.user', 'LEFT')
-                ->get()
-                ->getResultArray();
+                ->join('sede','reg_ferie.user = sede.user', 'LEFT');
 
-            $malattia = $malattiaSlave
-                ->select(' personale_operativo.nome, personale_operativo.cognome, 
+            $ferie = $ferieSlave->get()->getResultArray();
+
+            $malattiaSlave
+                ->select('personale_operativo.nome, personale_operativo.cognome, 
                 reg_malattia.id, reg_malattia.user, reg_malattia.email, reg_malattia.tipo, reg_malattia.reason, 
-                reg_malattia.address, reg_malattia.telephone, reg_malattia.from, reg_malattia.to,')
+                reg_malattia.address, reg_malattia.telephone, reg_malattia.from, reg_malattia.to, 
+                sede.sede_destinazione')
                 ->where('from <=', date('Y-m-d H:m:s',strtotime($day)))
                 ->where('to >=', date('Y-m-d H:m:s',strtotime($day)))
                 ->join('personale_operativo','personale_operativo.id = reg_malattia.user', 'LEFT')
-                ->get()
-                ->getResultArray();
+                ->join('sede','reg_malattia.user = sede.user', 'LEFT');
+
+            $malattia = $malattiaSlave ->get()->getResultArray();
 
             foreach ($userList as $key => $user) {
                 foreach($malattia as $checkMalattia) {
-                    if ($user['id'] == $checkMalattia['user'])
+                    if ($user['user'] == $checkMalattia['user'])
                         unset($userList[$key]);
                 }
                 foreach($ferie as $checkFerie) {
-                    if ($user['id'] == $checkFerie['user'])
+                    if ($user['user'] == $checkFerie['user'])
                         unset($userList[$key]);
                 }
             }
+
+            if($this->request->getVar('sede')){
+                foreach ($userList as $key => $user) {
+                    if(strcmp($user['sede_destinazione'], $this->request->getVar('sede'))){
+                        unset($userList[$key]);
+                    }
+                }
+                foreach ($malattia as $key => $user) {
+                    if(strcmp($user['sede_destinazione'], $this->request->getVar('sede'))){
+                        unset($malattia[$key]);
+                    }
+                }
+                foreach ($ferie as $key => $user) {
+                    if(strcmp($user['sede_destinazione'], $this->request->getVar('sede'))){
+                        unset($ferie[$key]);
+                    }
+                }
+            }
+
             $return = array(
                 'operativo' => $userList,
                 'ferie' => $ferie,

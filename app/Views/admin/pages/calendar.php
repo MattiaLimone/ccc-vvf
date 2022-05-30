@@ -71,8 +71,32 @@
     <!-- INIZIO FORM MODIFICA PERMESSI -->
     <div class="row justify-content-center">
         <section class="ftco-section">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-6">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h6 class="text-left font-weight-light my-4">Filtra per sede:</h6>
+                                </div>
+                                <div class="col-md-9 pt-3">
+
+                                    <select id="sede" name="sede" class="form-select" aria-label=".form-select-lg" style="padding-top: 0.625rem;" enabled>
+                                        <option value="0" selected>------</option>
+                                        <?php foreach ($sediList as $sede) {
+                                            echo '<option value="'.$sede['sede_destinazione'].'">'.$sede['sede_destinazione'].'</option>';
+                                        }?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="row justify-content-center">
+
                 <div class="col-lg-8">
                     <div id="calendar"></div>
                 </div>
@@ -115,6 +139,8 @@
                                             </th>
                                             <th class="border-0">Cognome
                                             </th>
+                                            <th class="border-0">Sede
+                                            </th>
                                             <th class="border-0 rounded-end">Turno
                                             </th>
                                             </thead>
@@ -139,6 +165,8 @@
                                         <th class="border-0 rounded-start">Nome
                                         </th>
                                         <th class="border-0">Cognome
+                                        </th>
+                                        <th class="border-0">Sede
                                         </th>
                                         <th class="border-0">Dal
                                         </th>
@@ -166,6 +194,8 @@
                                     <th class="border-0 rounded-start">Nome
                                     </th>
                                     <th class="border-0">Cognome
+                                    </th>
+                                    <th class="border-0">Sede
                                     </th>
                                     <th class="border-0">Motivazione
                                     </th>
@@ -200,7 +230,21 @@
 <?= $this->section("footer") ?>
 <script>
     let testElement;
+    function getFormattedDate(date) {
+        var year = date.getFullYear();
+
+        var month = (1 + date.getMonth()).toString();
+        month = month.length > 1 ? month : '0' + month;
+
+        var day = date.getDate().toString();
+        day = day.length > 1 ? day : '0' + day;
+
+        return month + '/' + day + '/' + year;
+    }
     $('document').ready(function(){
+        const monthNames = ["GEN", "FEB", "MAR", "APR", "MAG", "GIU",
+            "LUG", "AGO", "SET", "OTT", "NOV", "DEC"
+        ];
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
@@ -247,6 +291,7 @@
                     data: {
                         'day': info.event.startStr,
                         'turno': info.event.title,
+                        'sede': $('#sede').val()
                     },
                     success: function (data) {
                         console.log(data);
@@ -258,24 +303,31 @@
                             '<tr><td>' + data.turno.codice + '</td><td> '+data.turno.orario +' </td></tr>'
                         );
                         $.each(data.ferie, function( index, value ) {
+                            var from_ferie = new Date(data.ferie[index].from );
+                            var to_ferie = new Date(data.ferie[index].to);
                             $('#ferie tbody').append(
                                 '<tr><td class="border-0">' + data.ferie[index].nome + '</td>' +
                                 '<td class="border-0">' + data.ferie[index].cognome + '</td>'+
-                                '<td class="border-0">' + data.ferie[index].from + '</td>'+
-                                '<td class="border-0">' + data.ferie[index].to + '</td>' +
+                                '<td class="border-0">' + data.ferie[index].sede_destinazione + '</td>'+
+                                '<td class="border-0">' + from_ferie.getDate()+ ' ' + monthNames[from_ferie.getMonth()] + ' '+from_ferie.getFullYear()+ '</td>'+
+                                '<td class="border-0">' + to_ferie.getDate()+ ' ' + monthNames[to_ferie.getMonth()] + ' '+to_ferie.getFullYear()+ '</td>'+
                                 '</tr>'
                             );
                         });
 
                         $.each(data.malattia, function( index, value ) {
+                            var from_malattia = new Date(data.malattia[index].from);
+                            var to_malattia = new Date(data.malattia[index].to);
+
                             $('#malattia tbody').append(
                                 '<tr><td class="border-0">' + data.malattia[index].nome + '</td>' +
                                 '<td class="border-0">' + data.malattia[index].cognome + '</td>'+
+                                '<td class="border-0">' + data.malattia[index].sede_destinazione + '</td>'+
                                 '<td class="border-0">' + data.malattia[index].reason + '</td>'+
                                 '<td class="border-0">' + data.malattia[index].address + '</td>'+
                                 '<td class="border-0">' + data.malattia[index].email + '</td>'+
-                                '<td class="border-0">' + data.malattia[index].from + '</td>'+
-                                '<td class="border-0">' + data.malattia[index].to + '</td>' +
+                                '<td class="border-0">' + from_malattia.getDate()+' '+ monthNames[from_malattia.getMonth()] + ' '+from_malattia.getFullYear()+ '</td>'+
+                                '<td class="border-0">' + to_malattia.getDate()+' '+ monthNames[to_malattia.getMonth()] + ' '+to_malattia.getFullYear()+ '</td>'+
                                 '</tr>'
                             );
                         });
@@ -284,6 +336,7 @@
                             $('#personale tbody').append(
                                 '<tr><td class="border-0">' + data.operativo[index].nome + '</td>' +
                                 '<td class="border-0">' + data.operativo[index].cognome + '</td>'+
+                                '<td class="border-0">' + data.operativo[index].sede_destinazione + '</td>'+
                                 '<td class="border-0">' + data.operativo[index].codice_turnazione + '</td>'+
                                 '</tr>'
                             );

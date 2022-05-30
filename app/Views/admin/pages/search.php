@@ -107,9 +107,13 @@
                                                         <div class="col-md-8">
                                                             <select id="grado" name="grado" class="form-select" aria-label=".form-select-lg" style="padding-top: 0.625rem;" enabled>
                                                                 <option value="0" selected>------</option>
-                                                                <?php foreach ($gradiList as $grado) {
-                                                                    echo '<option value="'.$grado['id'].'">'.$grado['title'].' ('.$grado['code'].')</option>';
-                                                                }?>
+                                                                <?php
+                                                                if(!empty($gradiList)){
+                                                                    foreach ($gradiList as $grado) {
+                                                                        echo '<option value="'.$grado['id'].'">'.$grado['title'].'</option>';
+                                                                    }
+                                                                }
+                                                                ?>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -122,9 +126,13 @@
                                                         <div class="col-md-8">
                                                             <select id="sede" name="sede" class="form-select" aria-label=".form-select-lg" style="padding-top: 0.625rem;" enabled>
                                                                 <option value="0" selected>------</option>
-                                                                <?php foreach ($sediList as $sede) {
-                                                                    echo '<option value="'.$sede['sede_destinazione'].'">'.$sede['sede_destinazione'].'</option>';
-                                                                }?>
+                                                                <?php
+                                                                if(!empty($sediList)){
+                                                                    foreach ($sediList as $sede) {
+                                                                        echo '<option value="'.$sede['sede_destinazione'].'">'.$sede['sede_destinazione'].'</option>';
+                                                                    }
+                                                                }
+                                                                ?>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -141,23 +149,29 @@
                     </div>
 
                     <div class="card card-body border-0 shadow table-wrapper table-responsive">
-                        <table id="example" class="table table-striped" style="width:100%">
+                        <table id="table_personale_operativo" class="table table-striped" style="width:100%">
                             <thead>
                             <tr>
                                 <th></th>
-                                <?php foreach($fieldList as $field)
-                                    echo "<th>".strtoupper(str_replace('_',' ',$field))."</th>";
+                                <?php
+                                if(!empty($fieldList)){
+                                    foreach($fieldList as $field)
+                                        echo "<th>".strtoupper(str_replace('_',' ',$field))."</th>";
+                                }
                                 ?>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach($usersList as $user){
-                                echo "<tr>";
-                                echo "<td></td>";
-                                foreach ($user as $value){
-                                    echo "<td>".$value."</td>";
+                            <?php
+                            if(!empty($usersList)){
+                                foreach($usersList as $user){
+                                    echo "<tr>";
+                                    echo "<td></td>";
+                                    foreach ($user as $value){
+                                        echo "<td>".$value."</td>";
+                                    }
+                                    echo "</tr>";
                                 }
-                                echo "</tr>";
                             } ?>
                             </tbody>
 
@@ -172,11 +186,11 @@
 <?= $this->section("footer") ?>
     <script>
         $(document).ready(function() {
-            var table = $('#example').DataTable({
+            var table = $('#table_personale_operativo').DataTable({
                 dom: 'Bfrtip',
-                select: {
+                    select: {
                     style: 'multi',
-                    selector: 'td:first-child'
+                        selector: 'td:first-child'
                 },
                 columnDefs: [ {
                     orderable: false,
@@ -184,146 +198,146 @@
                     targets:   0
                 }
                 ],
-                order: [[ 1, 'asc' ]],
-                language: {
+                    order: [[ 1, 'asc' ]],
+                    language: {
                     "infoFiltered": "(filtrati da _MAX_ elementi totali)",
-                    "infoThousands": ".",
-                    "loadingRecords": "Caricamento...",
-                    "processing": "Elaborazione...",
-                    "search": "Cerca:",
-                    "paginate": {
+                        "infoThousands": ".",
+                        "loadingRecords": "Caricamento...",
+                        "processing": "Elaborazione...",
+                        "search": "Cerca:",
+                        "paginate": {
                         "first": "Inizio",
-                        "previous": "Precedente",
-                        "next": "Successivo",
-                        "last": "Fine"
+                            "previous": "Precedente",
+                            "next": "Successivo",
+                            "last": "Fine"
                     },
                     "aria": {
                         "sortAscending": ": attiva per ordinare la colonna in ordine crescente",
-                        "sortDescending": ": attiva per ordinare la colonna in ordine decrescente"
+                            "sortDescending": ": attiva per ordinare la colonna in ordine decrescente"
                     },
                     "autoFill": {
                         "cancel": "Annulla",
-                        "fill": "Riempi tutte le celle con <i>%d<\/i>",
-                        "fillHorizontal": "Riempi celle orizzontalmente",
-                        "fillVertical": "Riempi celle verticalmente"
+                            "fill": "Riempi tutte le celle con <i>%d<\/i>",
+                            "fillHorizontal": "Riempi celle orizzontalmente",
+                            "fillVertical": "Riempi celle verticalmente"
                     },
                     "buttons": {
                         "collection": "Collezione <span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"><\/span>",
-                        "colvis": "Visibilità Colonna",
-                        "colvisRestore": "Ripristina visibilità",
-                        "copy": "Copia",
-                        "copyKeys": "Premi ctrl o u2318 + C per copiare i dati della tabella nella tua clipboard di sistema.<br \/><br \/>Per annullare, clicca questo messaggio o premi ESC.",
-                        "copySuccess": {
+                            "colvis": "Visibilità Colonna",
+                            "colvisRestore": "Ripristina visibilità",
+                            "copy": "Copia",
+                            "copyKeys": "Premi ctrl o u2318 + C per copiare i dati della tabella nella tua clipboard di sistema.<br \/><br \/>Per annullare, clicca questo messaggio o premi ESC.",
+                            "copySuccess": {
                             "1": "Copiata 1 riga nella clipboard",
-                            "_": "Copiate %d righe nella clipboard"
+                                "_": "Copiate %d righe nella clipboard"
                         },
                         "copyTitle": "Copia nella Clipboard",
-                        "csv": "CSV",
-                        "excel": "Excel",
-                        "pageLength": {
+                            "csv": "CSV",
+                            "excel": "Excel",
+                            "pageLength": {
                             "-1": "Mostra tutte le righe",
-                            "_": "Mostra %d righe"
+                                "_": "Mostra %d righe"
                         },
                         "pdf": "PDF",
-                        "print": "Stampa"
+                            "print": "Stampa"
                     },
                     "decimal": ",",
-                    "emptyTable": "Nessun dato disponibile nella tabella",
-                    "info": "Risultati da _START_ a _END_ di _TOTAL_ elementi",
-                    "infoEmpty": "Risultati da 0 a 0 di 0 elementi",
-                    "lengthMenu": "Mostra _MENU_ elementi",
-                    "searchBuilder": {
+                        "emptyTable": "Nessun dato disponibile nella tabella",
+                        "info": "Risultati da _START_ a _END_ di _TOTAL_ elementi",
+                        "infoEmpty": "Risultati da 0 a 0 di 0 elementi",
+                        "lengthMenu": "Mostra _MENU_ elementi",
+                        "searchBuilder": {
                         "add": "Aggiungi Condizione",
-                        "button": {
+                            "button": {
                             "0": "Generatore di Ricerca",
-                            "_": "Generatori di Ricerca (%d)"
+                                "_": "Generatori di Ricerca (%d)"
                         },
                         "clearAll": "Pulisci Tutto",
-                        "condition": "Condizione",
-                        "conditions": {
+                            "condition": "Condizione",
+                            "conditions": {
                             "date": {
                                 "after": "Dopo",
-                                "before": "Prima",
-                                "between": "Tra",
-                                "empty": "Vuoto",
-                                "equals": "Uguale A",
-                                "not": "Non",
-                                "notBetween": "Non Tra",
-                                "notEmpty": "Non Vuoto"
+                                    "before": "Prima",
+                                    "between": "Tra",
+                                    "empty": "Vuoto",
+                                    "equals": "Uguale A",
+                                    "not": "Non",
+                                    "notBetween": "Non Tra",
+                                    "notEmpty": "Non Vuoto"
                             },
                             "number": {
                                 "between": "Tra",
-                                "empty": "Vuoto",
-                                "equals": "Uguale A",
-                                "gt": "Maggiore Di",
-                                "gte": "Maggiore O Uguale A",
-                                "lt": "Minore Di",
-                                "lte": "Minore O Uguale A",
-                                "not": "Non",
-                                "notBetween": "Non Tra",
-                                "notEmpty": "Non Vuoto"
+                                    "empty": "Vuoto",
+                                    "equals": "Uguale A",
+                                    "gt": "Maggiore Di",
+                                    "gte": "Maggiore O Uguale A",
+                                    "lt": "Minore Di",
+                                    "lte": "Minore O Uguale A",
+                                    "not": "Non",
+                                    "notBetween": "Non Tra",
+                                    "notEmpty": "Non Vuoto"
                             },
                             "string": {
                                 "contains": "Contiene",
-                                "empty": "Vuoto",
-                                "endsWith": "Finisce Con",
-                                "equals": "Uguale A",
-                                "not": "Non",
-                                "notEmpty": "Non Vuoto",
-                                "startsWith": "Inizia Con"
+                                    "empty": "Vuoto",
+                                    "endsWith": "Finisce Con",
+                                    "equals": "Uguale A",
+                                    "not": "Non",
+                                    "notEmpty": "Non Vuoto",
+                                    "startsWith": "Inizia Con"
                             },
                             "array": {
                                 "equals": "Uguale A",
-                                "empty": "Vuoto",
-                                "contains": "Contiene",
-                                "not": "Non",
-                                "notEmpty": "Non Vuoto",
-                                "without": "Senza"
+                                    "empty": "Vuoto",
+                                    "contains": "Contiene",
+                                    "not": "Non",
+                                    "notEmpty": "Non Vuoto",
+                                    "without": "Senza"
                             }
                         },
                         "data": "Dati",
-                        "deleteTitle": "Elimina regola filtro",
-                        "leftTitle": "Criterio di Riduzione Rientro",
-                        "logicAnd": "E",
-                        "logicOr": "O",
-                        "rightTitle": "Criterio di Aumento Rientro",
-                        "title": {
+                            "deleteTitle": "Elimina regola filtro",
+                            "leftTitle": "Criterio di Riduzione Rientro",
+                            "logicAnd": "E",
+                            "logicOr": "O",
+                            "rightTitle": "Criterio di Aumento Rientro",
+                            "title": {
                             "0": "Generatore di Ricerca",
-                            "_": "Generatori di Ricerca (%d)"
+                                "_": "Generatori di Ricerca (%d)"
                         },
                         "value": "Valore"
                     },
                     "searchPanes": {
                         "clearMessage": "Pulisci Tutto",
-                        "collapse": {
+                            "collapse": {
                             "0": "Pannello di Ricerca",
-                            "_": "Pannelli di Ricerca (%d)"
+                                "_": "Pannelli di Ricerca (%d)"
                         },
                         "count": "{total}",
-                        "countFiltered": "{shown} ({total})",
-                        "emptyPanes": "Nessun Pannello di Ricerca",
-                        "loadMessage": "Caricamento Pannello di Ricerca",
-                        "title": "Filtri Attivi - %d"
+                            "countFiltered": "{shown} ({total})",
+                            "emptyPanes": "Nessun Pannello di Ricerca",
+                            "loadMessage": "Caricamento Pannello di Ricerca",
+                            "title": "Filtri Attivi - %d"
                     },
                     "select": {
                         "rows": {
                             "1": "1 riga selezionata",
-                            "_": "%d righe selezionate"
+                                "_": "%d righe selezionate"
                         }
                     },
                     "zeroRecords": "Nessun elemento corrispondente trovato",
-                    "datetime": {
+                        "datetime": {
                         "amPm": [
                             "am",
                             "pm"
                         ],
-                        "hours": "ore",
-                        "minutes": "minuti",
-                        "next": "successivo",
-                        "previous": "precedente",
-                        "seconds": "secondi",
-                        "unknown": "sconosciuto",
-                        "weekdays": [
+                            "hours": "ore",
+                            "minutes": "minuti",
+                            "next": "successivo",
+                            "previous": "precedente",
+                            "seconds": "secondi",
+                            "unknown": "sconosciuto",
+                            "weekdays": [
                             "Dom",
                             "Lun",
                             "Mar",
@@ -332,7 +346,7 @@
                             "Ven",
                             "Sab"
                         ],
-                        "months": [
+                            "months": [
                             "Gennaio",
                             "Febbraio",
                             "Marzo",
@@ -349,33 +363,33 @@
                     },
                     "editor": {
                         "close": "Chiudi",
-                        "create": {
+                            "create": {
                             "button": "Nuovo",
-                            "submit": "Aggiungi",
-                            "title": "Aggiungi nuovo elemento"
+                                "submit": "Aggiungi",
+                                "title": "Aggiungi nuovo elemento"
                         },
                         "edit": {
                             "button": "Modifica",
-                            "submit": "Modifica",
-                            "title": "Modifica elemento"
+                                "submit": "Modifica",
+                                "title": "Modifica elemento"
                         },
                         "error": {
                             "system": "Errore del sistema."
                         },
                         "multi": {
                             "info": "Gli elementi selezionati contengono valori diversi. Per modificare e impostare tutti gli elementi per questa selezione allo stesso valore, premi o clicca qui, altrimenti ogni cella manterrà il suo valore attuale.",
-                            "noMulti": "Questa selezione può essere modificata individualmente, ma non se fa parte di un gruppo.",
-                            "restore": "Annulla le modifiche",
-                            "title": "Valori multipli"
+                                "noMulti": "Questa selezione può essere modificata individualmente, ma non se fa parte di un gruppo.",
+                                "restore": "Annulla le modifiche",
+                                "title": "Valori multipli"
                         },
                         "remove": {
                             "button": "Rimuovi",
-                            "confirm": {
+                                "confirm": {
                                 "_": "Sei sicuro di voler cancellare %d righe?",
-                                "1": "Sei sicuro di voler cancellare 1 riga?"
+                                    "1": "Sei sicuro di voler cancellare 1 riga?"
                             },
                             "submit": "Rimuovi",
-                            "title": "Rimuovi"
+                                "title": "Rimuovi"
                         }
                     },
                     "thousands": "."
@@ -430,7 +444,7 @@
                     }
                 ],
 
-                "scrollX": true
+                    "scrollX": true
             });
         } );
         $(document).ready(function() {

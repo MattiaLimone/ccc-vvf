@@ -50,7 +50,7 @@ class Import extends Controller
     {
         if(session()->get('level') >= 10){
             $data = [
-                'page_title' => 'Dashboard - Ricerca Personale',
+                'page_title' => 'Dashboard - Importa Personale',
                 'breadcrumbs' => $this->breadcrumb,
                 'gradiList' => $this->gradiList,
                 'fieldList' => $this->fieldList,
@@ -131,10 +131,10 @@ class Import extends Controller
 
         foreach ($this->request->getPost() as $user) {
             if($this->checkPreImport($user[2])) {
-                echo $counter++;
+
                 $qualifica = new GradiModel();
                 $qualifica = $qualifica->select('id')
-                    ->like('title', $user[16])
+                    ->where('title', Utils::toCamelCase($user[16]))
                     ->first();
 
                 if($user[4] == 'NULL')

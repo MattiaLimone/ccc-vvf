@@ -1,3 +1,4 @@
+<!--
 <li class="nav-item dropdown">
     <a class="nav-link text-dark notification-bell unread dropdown-toggle" data-unread-notifications="true" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
         <svg class="icon icon-sm text-gray-900" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path></svg>
@@ -8,7 +9,7 @@
             <a href="#" class="list-group-item list-group-item-action border-bottom">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <!-- Avatar -->
+
                         <img alt="Image placeholder" src="../../assets/img/team/profile-picture-1.jpg" class="avatar-md rounded">
                     </div>
                     <div class="col ps-0 ms-2">
@@ -27,7 +28,7 @@
             <a href="#" class="list-group-item list-group-item-action border-bottom">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <!-- Avatar -->
+
                         <img alt="Image placeholder" src="../../assets/img/team/profile-picture-2.jpg" class="avatar-md rounded">
                     </div>
                     <div class="col ps-0 ms-2">
@@ -46,7 +47,7 @@
             <a href="#" class="list-group-item list-group-item-action border-bottom">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <!-- Avatar -->
+
                         <img alt="Image placeholder" src="<?php echo base_url('assets/img/team/profile-picture-3.jpg'); ?>" class="avatar-md rounded">
                     </div>
                     <div class="col ps-0 m-2">
@@ -65,7 +66,7 @@
             <a href="#" class="list-group-item list-group-item-action border-bottom">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <!-- Avatar -->
+
                         <img alt="Image placeholder" src="<?php echo base_url('assets/img/team/profile-picture-4.jpg'); ?>" class="avatar-md rounded">
                     </div>
                     <div class="col ps-0 ms-2">
@@ -84,7 +85,7 @@
             <a href="#" class="list-group-item list-group-item-action border-bottom">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <!-- Avatar -->
+
                         <img alt="Image placeholder" src="assets/img/team/profile-picture-5.jpg" class="avatar-md rounded">
                     </div>
                     <div class="col ps-0 ms-2">
@@ -107,3 +108,4 @@
         </div>
     </div>
 </li>
+-->

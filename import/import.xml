@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ST_ANAGRAFICA_PERSONALE>
+    <LIST_G_CGNDIP>
+        <G_CGNDIP>
+            <NUMISCRUO>00</NUMISCRUO>
+            Numero Iscrizione al ruolo specifico del dipendente (non credo sia rilevante)
+            <DATAINI_QUAL>01-GEN-18</DATAINI_QUAL>
+            Data inizio qualifica in particolare per la persona indicata è la data di passaggio di qualifica a Dirigente Superiore
+            <DATSCACER />
+            <SESDIP>F</SESDIP>
+            Sesso
+            <DATA_ASSUNZIONE>01-GEN-90</DATA_ASSUNZIONE>
+            questa è facile
+            <RUOLOQUAL>5</RUOLOQUAL>
+            Ruolo della qualifica
+            <DATCMBTUR>15-SET-16</DATCMBTUR>
+            attualmente non so cosa sia (ti aggiorno)
+            <DESCCOMUNE>SANTA MARIA A VICO</DESCCOMUNE>
+            Comune di residenza
+            <CGNDIP>Pippo</CGNDIP>
+            cognome
+            <NOMDIP>Pluto</NOMDIP>
+            nome
+            <CODQUALIFICA>646</CODQUALIFICA>
+            codice qualifica (non credo sia rilevante per ora)
+            <DATNASDIP>01-GEN-14</DATNASDIP>
+            data nascita dipendente
+            <CODCOMUNE_NAS>61082</CODCOMUNE_NAS>
+            codice comune preso dalle tabelle ISTAT
+            <MATDIP>1234567</MATDIP>
+            matricola del dipendente
+            <CODFISDIP>VTRRSO14B49G233Z</CODFISDIP>
+            cf
+            <GIPDIP_TYPE>DIPOPER</GIPDIP_TYPE>
+            non so cosa sia (ti aggiorno)
+            <CODTIPOPERS>1</CODTIPOPERS>
+            non so cosa sia (ti aggiorno)
+            <POSECONOMICA />
+            posizione economica (non credo sia rilevante)
+            <FASCIARETRIB>0</FASCIARETRIB>
+            come sopra
+            <DATINI>01-GEN-18</DATINI>
+            uguale a inizio qualifica (vedi sopra)
+            <CODCESSAZIONE />
+            cessazione
+            <VIARES>Via tal dei tali</VIARES>
+            via residenza
+            <CAPRES>81028</CAPRES>
+            cap residenza
+            <CODCOMUNE_RES>61082</CODCOMUNE_RES>
+            codice comune residenza (vedi sopra)
+            <CODPROV_RISIEDE_IN>CE</CODPROV_RISIEDE_IN>
+            provincia residenza
+            <CODTUR>G6</CODTUR>
+            codice turnazione, in questo caso la G sta per Giornaliero
+            <CODSEDE>SA</CODSEDE>
+            Sede lavorativa di appartenenza
+            <CODDTC>1000</CODDTC>
+            non so cosa sia (ti aggiorno)
+            <DATAASGN>27-MAG-19</DATAASGN>
+            data di assegnazione al comando attualmente assegnato
+            <DATA_CESSAZIONE />
+            credo si riferisca alla data di assegnazione del comando
+            <DATA_REINTEGRO />
+            e anche questo
+            <CF_DATA_CESS />
+            <CF_NOMEQUALIFICA>DIRIGENTE SUPERIORE</CF_NOMEQUALIFICA>
+            nome della qualifica
+            <CF_DESDTC>Centrale</CF_DESDTC>
+            sede di appartenenza
+            <CF_INDIRIZZO>Indirizzo : VIALE Tal dei tali C.A.P. 81028 - SANTA MARIA A VICO</CF_INDIRIZZO>
+            indirizzo residenza per esteso
+            <CF_TELEFONO>Telefono : 0808/123456</CF_TELEFONO>
+            telefono dichiarato di residenza
+            <CF_DT_ASSUNZIONE>Data Assunzione : 01/01/1990 Data inizio qualifica : 01/01/2018 Specializzazioni: AUTISTA DI 1^ GRADO</CF_DT_ASSUNZIONE>
+        </G_CGNDIP>
+        questo si capisce
+    </LIST_G_CGNDIP>
+    <LIST_G_COMUNE_SEDE>
+        dati della centrale provinciale
+        <G_COMUNE_SEDE>
+            <COMUNE_SEDE>SALERNO</COMUNE_SEDE>
+            <DESC_SEDE>Comando VV.F. SALERNO</DESC_SEDE>
+            <DESCMD>SALERNO</DESCMD>
+            <EMAIL />
+            <INDIRIZZO_SEDE>Via S. Eustachio, 35</INDIRIZZO_SEDE>
+            <NUM_FAX_SEDE>089/3089462</NUM_FAX_SEDE>
+            <NUM_TEL1_SEDE>089/3089411</NUM_TEL1_SEDE>
+            <NOMCMD>DOTT. ARCH. ROSA D'ELISEO</NOMCMD>
+            <CF_DATI_SEDE>Via S. Eustachio, 35 - Tel. 089/3089411 - Fax 089/3089462 - E-Mail:</CF_DATI_SEDE>
+        </G_COMUNE_SEDE>
+    </LIST_G_COMUNE_SEDE>
+</ST_ANAGRAFICA_PERSONALE>

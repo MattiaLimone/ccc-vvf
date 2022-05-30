@@ -1,5 +1,6 @@
 RewriteEngine on
 DirectoryIndex /public/index.php
+SetEnv CI_ENVIRONMENT development
 
 RewriteCond %{REQUEST_URI} !^/public
 RewriteRule ^(.*)$ /public/$1 [NC,L]

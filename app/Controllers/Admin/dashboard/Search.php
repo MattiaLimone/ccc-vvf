@@ -10,6 +10,7 @@ use App\Libraries\Utils;
 use App\Models\PersonaleOperativoModel;
 use App\Models\SedeModel;
 use CodeIgniter\Controller;
+use function PHPUnit\Framework\isEmpty;
 
 class Search extends Controller
 {
@@ -29,7 +30,14 @@ class Search extends Controller
 
         $usersList = new PersonaleOperativoModel();
         $usersList = $usersList
+            ->select('personale_operativo.nome, personale_operativo.cognome, 
+            sede.sede_destinazione, gradi_operativi.title AS qualifica,
+            personale_operativo.sesso,personale_operativo.data_di_nascita,personale_operativo.matricola,
+            personale_operativo.provincia, personale_operativo.comune, personale_operativo.indirizzo,
+            personale_operativo.cap, personale_operativo.numero_telefono AS telefono, 
+            personale_operativo.assunzione_completo AS specifica operatore')
             ->join('sede','sede.user = personale_operativo.id')
+            ->join('gradi_operativi', 'gradi_operativi.id = personale_operativo.qualifica' )
             ->get()
             ->getResultArray();
 
@@ -38,18 +46,17 @@ class Search extends Controller
             unset($user['created_at']);
             unset($user['updated_at']);
             unset($user['user']);
-            $user['data_di_nascita'] = Utils::explodeDate($user['data_di_nascita']);
-            $user['data_inizio_qualifica'] = Utils::explodeDate($user['data_inizio_qualifica']);
-            $user['data_assunzione'] = Utils::explodeDate($user['data_assunzione']);
-            $user['data_assegnazione'] = Utils::explodeDate($user['data_assegnazione']);
-            $user['data_cessazione'] = Utils::explodeDate($user['data_cessazione']);
-            $user['data_reintegro'] = Utils::explodeDate($user['data_reintegro']);
+            if($user['data_di_nascita'])
+                $user['data_di_nascita'] = Utils::explodeDate($user['data_di_nascita']);
+
             $this->usersList[] = $user;
         }
-        $this->fieldList =array_keys($this->usersList[0]);
+        if(!empty($this->usersList)){
+            $this->fieldList =array_keys($this->usersList[0]);
+            $this->gradiList = Utils::getGradiList();
+            $this->sediList = Utils::getSediList();
+        }
 
-        $this->gradiList = Utils::getGradiList();
-        $this->sediList = Utils::getSediList();
 
         $results = $page->getAll();
         $counter = 0;
@@ -64,7 +71,7 @@ class Search extends Controller
     {
         if(session()->get('level') >= 6){
             $data = [
-                'page_title' => 'Dashboard - Importa Personale',
+                'page_title' => 'Dashboard - Ricerca Personale',
                 'breadcrumbs' => $this->breadcrumb,
                 'usersList' => $this->usersList,
                 'fieldList' => $this->fieldList,
@@ -84,11 +91,20 @@ class Search extends Controller
             $grado = $this->request->getVar('grado');
             $sede = $this->request->getVar('sede');
 
+
             $usersList = new PersonaleOperativoModel();
+            $usersList ->select('personale_operativo.nome, personale_operativo.cognome, 
+            sede.sede_destinazione, gradi_operativi.title AS qualifica,
+            personale_operativo.sesso,personale_operativo.data_di_nascita,personale_operativo.matricola,
+            personale_operativo.provincia, personale_operativo.comune, personale_operativo.indirizzo,
+            personale_operativo.cap, personale_operativo.numero_telefono AS telefono, 
+            personale_operativo.assunzione_completo AS specifica operatore')
+                ->join('sede','sede.user = personale_operativo.id')
+                ->join('gradi_operativi', 'gradi_operativi.id = personale_operativo.qualifica');
             if(isset($grado) && $grado != '0')
-                $usersList = $usersList->where('qualifica', $grado)->join('sede','sede.user = personale_operativo.id')->get()->getResultArray();
+                $usersList = $usersList->where('personale_operativo.qualifica', $grado)->get()->getResultArray();
             else
-                $usersList = $usersList->join('sede','sede.user = personale_operativo.id')->get()->getResultArray();
+                $usersList = $usersList->get()->getResultArray();
 
             $this->usersList = [];
             foreach ($usersList as $user){
@@ -97,11 +113,6 @@ class Search extends Controller
                 unset($user['updated_at']);
                 unset($user['user']);
                 $user['data_di_nascita'] = Utils::explodeDate($user['data_di_nascita']);
-                $user['data_inizio_qualifica'] = Utils::explodeDate($user['data_inizio_qualifica']);
-                $user['data_assunzione'] = Utils::explodeDate($user['data_assunzione']);
-                $user['data_assegnazione'] = Utils::explodeDate($user['data_assegnazione']);
-                $user['data_cessazione'] = Utils::explodeDate($user['data_cessazione']);
-                $user['data_reintegro'] = Utils::explodeDate($user['data_reintegro']);
                 if(isset($sede) && $sede != '0'){
                     if($sede == $user['sede_destinazione']){
                         $this->usersList[] = $user;

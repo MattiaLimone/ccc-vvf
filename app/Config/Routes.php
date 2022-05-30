@@ -106,3 +106,15 @@ $routes->get('admin/dashboard/fonogramma/all', 'Admin\Dashboard\Fonogramma::getA
 $routes->post('admin/dashboard/fonogramma/all', 'Admin\Dashboard\Fonogramma::getAll', ['filter' => 'adminAuth']);
 $routes->get('admin/dashboard/fonogramma/getPdf', 'Admin\Dashboard\Fonogramma::getAll', ['filter' => 'adminAuth']);
 $routes->post('admin/dashboard/fonogramma/getPdf', 'Admin\Dashboard\Fonogramma::getPdf', ['filter' => 'adminAuth']);
+//INSERISCI FERIE
+$routes->get('admin/dashboard/addferie', 'Admin\Dashboard\AddFerie::index', ['filter' => 'adminAuth']);
+$routes->get('admin/dashboard/addferie/insert', 'Admin\Dashboard\AddFerie::index', ['filter' => 'adminAuth']);
+$routes->post('admin/dashboard/addferie/insert', 'Admin\Dashboard\AddFerie::insert', ['filter' => 'adminAuth']);
+//INSERISCI MALATTIA
+$routes->get('admin/dashboard/addmalattia', 'Admin\Dashboard\AddMalattia::index', ['filter' => 'adminAuth']);
+$routes->get('admin/dashboard/addmalattia/insert', 'Admin\Dashboard\AddMalattia::index', ['filter' => 'adminAuth']);
+$routes->post('admin/dashboard/addmalattia/insert', 'Admin\Dashboard\AddMalattia::insert', ['filter' => 'adminAuth']);
+//MODIFICA QUALIFICA
+$routes->get('admin/dashboard/updatequalifica', 'Admin\Dashboard\UpdateQualifica::index', ['filter' => 'adminAuth']);
+$routes->get('admin/dashboard/updatequalifica/insert', 'Admin\Dashboard\UpdateQualifica::index', ['filter' => 'adminAuth']);
+$routes->post('admin/dashboard/updatequalifica/insert', 'Admin\Dashboard\UpdateQualifica::insert', ['filter' => 'adminAuth']);

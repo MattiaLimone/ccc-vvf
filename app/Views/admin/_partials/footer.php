@@ -7,16 +7,17 @@
             <!-- List -->
             <ul class="list-inline list-group-flush list-group-borderless text-md-end mb-0">
                 <li class="list-inline-item px-0 px-sm-2">
-                    <a href="">Link 1</a>
+                    <a href="<?php echo base_url('admin/dashboard'); ?>">Home</a>
                 </li>
                 <li class="list-inline-item px-0 px-sm-2">
-                    <a href="">Link 2</a>
+
+                    <a href="<?php echo base_url('admin/dashboard/calendar'); ?>">Calendario</a>
                 </li>
                 <li class="list-inline-item px-0 px-sm-2">
-                    <a href="">Link 3</a>
+                    <a href="<?php echo base_url('/admin/dashboard/fonogramma/all'); ?>">Fonogrammi</a>
                 </li>
                 <li class="list-inline-item px-0 px-sm-2">
-                    <a href="">Link 4</a>
+                    <a href="<?php echo base_url('admin/dashboard/search'); ?>">Personale Op.</a>
                 </li>
             </ul>
         </div>

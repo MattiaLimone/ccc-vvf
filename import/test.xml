@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ST_ANAGRAFICA_PERSONALE>
+    <LIST_G_CGNDIP>
+        <G_CGNDIP>
+            <NUMISCRUO>00</NUMISCRUO>
+            <DATAINI_QUAL>01-GEN-18</DATAINI_QUAL>
+            <DATSCACER />
+            <SESDIP>F</SESDIP>
+            <DATA_ASSUNZIONE>01-GEN-90</DATA_ASSUNZIONE>
+            <RUOLOQUAL>5</RUOLOQUAL>
+            <DATCMBTUR>15-SET-16</DATCMBTUR>
+            <DESCCOMUNE>SANTA MARIA A VICO</DESCCOMUNE>
+            <CGNDIP>Pippo</CGNDIP>
+            <NOMDIP>Pluto</NOMDIP>
+            <CODQUALIFICA>646</CODQUALIFICA>
+            <DATNASDIP>01-GEN-14</DATNASDIP>
+            <CODCOMUNE_NAS>61082</CODCOMUNE_NAS>
+            <MATDIP>1234567</MATDIP>
+            <CODFISDIP>VTRRSO14B49G233Z</CODFISDIP>
+            <GIPDIP_TYPE>DIPOPER</GIPDIP_TYPE>
+            <CODTIPOPERS>1</CODTIPOPERS>
+            <POSECONOMICA />
+            <FASCIARETRIB>0</FASCIARETRIB>
+            <DATINI>01-GEN-18</DATINI>
+            <CODCESSAZIONE />
+            <VIARES>Via tal dei tali</VIARES>
+            <CAPRES>81028</CAPRES>
+            <CODCOMUNE_RES>61082</CODCOMUNE_RES>
+            <CODPROV_RISIEDE_IN>CE</CODPROV_RISIEDE_IN>
+            <CODTUR>G6</CODTUR>
+            <CODSEDE>SA</CODSEDE>
+            <CODDTC>1000</CODDTC>
+            <DATAASGN>27-MAG-19</DATAASGN>
+            <DATA_CESSAZIONE />
+            <DATA_REINTEGRO />
+            <CF_DATA_CESS />
+            <CF_NOMEQUALIFICA>DIRIGENTE SUPERIORE</CF_NOMEQUALIFICA>
+            <CF_DESDTC>Centrale</CF_DESDTC>
+            <CF_INDIRIZZO>Indirizzo : VIALE Tal dei tali C.A.P. 81028 - SANTA MARIA A VICO</CF_INDIRIZZO>
+            <CF_TELEFONO>Telefono : 0808/123456</CF_TELEFONO>
+            <CF_DT_ASSUNZIONE>Data Assunzione : 01/01/1990 Data inizio qualifica : 01/01/2018 Specializzazioni: AUTISTA DI 1^ GRADO</CF_DT_ASSUNZIONE>
+        </G_CGNDIP>
+    </LIST_G_CGNDIP>
+    <LIST_G_COMUNE_SEDE>
+        <G_COMUNE_SEDE>
+            <COMUNE_SEDE>SALERNO</COMUNE_SEDE>
+            <DESC_SEDE>Comando VV.F. SALERNO</DESC_SEDE>
+            <DESCMD>SALERNO</DESCMD>
+            <EMAIL />
+            <INDIRIZZO_SEDE>Via S. Eustachio, 35</INDIRIZZO_SEDE>
+            <NUM_FAX_SEDE>089/3089462</NUM_FAX_SEDE>
+            <NUM_TEL1_SEDE>089/3089411</NUM_TEL1_SEDE>
+            <NOMCMD>DOTT. ARCH. ROSA D'ELISEO</NOMCMD>
+            <CF_DATI_SEDE>Via S. Eustachio, 35 - Tel. 089/3089411 - Fax 089/3089462 - E-Mail:</CF_DATI_SEDE>
+        </G_COMUNE_SEDE>
+    </LIST_G_COMUNE_SEDE>
+</ST_ANAGRAFICA_PERSONALE>

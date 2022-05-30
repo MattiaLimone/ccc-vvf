@@ -10,7 +10,13 @@ use App\Models\SedeModel;
 
 class Utils
 {
+    public static function toCamelCase($str)
+    {
+        $str = strtolower($str);
+        $str = ucwords($str);
 
+        return $str;
+    }
     public static function parseDate($date) {
         $dateArray = explode("-", $date);
         $day = $dateArray[0];
